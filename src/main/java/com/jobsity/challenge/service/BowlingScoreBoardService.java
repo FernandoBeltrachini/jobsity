@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static com.jobsity.challenge.utils.Constants.*;
+
 /**
  * Class that holds the implementation of a Bowling Score Board.
  */
@@ -28,16 +30,16 @@ public class BowlingScoreBoardService implements ScoreBoard, LineProcessor {
     private Map<String, List<Frame>> players = new HashMap<>();
 
     @Override
-    public void getBoard() {
-        String printDelimitor = Constants.TAB_CHARACTER_DELIMITER.concat(Constants.TAB_CHARACTER_DELIMITER);
+    public void printBoard() {
+        String printDelimitor = TAB_CHARACTER_DELIMITER.concat(TAB_CHARACTER_DELIMITER);
         //Pinting headerline
         LineUtils.printList(FRAME_OUTPUT, Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"), printDelimitor);
 
         players.forEach((player, frames) -> {
             BowlingUtils.calculateBowlingScores(frames);
             System.out.println(player);
-            LineUtils.printList(PINFALLS_OUTPUT, frames.stream().map(frame -> LineUtils.parseLine(Collections.singletonList(frame.toString()), Constants.TAB_CHARACTER_DELIMITER)).collect(Collectors.toList()), Constants.TAB_CHARACTER_DELIMITER);
-            LineUtils.printList(SCORE_OUTPUT, frames.stream().map(f -> LineUtils.parseLine(Collections.singletonList(f.getTotalScore().toString()), Constants.TAB_CHARACTER_DELIMITER)).collect(Collectors.toList()), printDelimitor);
+            LineUtils.printList(PINFALLS_OUTPUT, frames.stream().map(frame -> LineUtils.parseLine(Collections.singletonList(frame.toString()), TAB_CHARACTER_DELIMITER)).collect(Collectors.toList()), TAB_CHARACTER_DELIMITER);
+            LineUtils.printList(SCORE_OUTPUT, frames.stream().map(f -> LineUtils.parseLine(Collections.singletonList(f.getTotalScore().toString()), TAB_CHARACTER_DELIMITER)).collect(Collectors.toList()), printDelimitor);
         });
     }
 
@@ -56,7 +58,7 @@ public class BowlingScoreBoardService implements ScoreBoard, LineProcessor {
     @Override
     public void processLine(String line) {
         if (Objects.nonNull(line) && !line.isEmpty()) {
-            String[] splittedLine = LineUtils.split(line, Constants.TAB_CHARACTER_DELIMITER);
+            String[] splittedLine = LineUtils.split(line, TAB_CHARACTER_DELIMITER);
             if (!(splittedLine.length < 2)) {
                 String playerName = splittedLine[0];
                 Integer score = getBowlingScore(splittedLine[1]);
@@ -73,7 +75,9 @@ public class BowlingScoreBoardService implements ScoreBoard, LineProcessor {
                             } else {
                                 if (frameSize == 10) {
                                     SpecialFrame specialFrame = (SpecialFrame) lastFrame;
-                                    if (!specialFrame.isSpare() && Objects.isNull(specialFrame.getThirdValue())) {
+                                    if (Objects.isNull(specialFrame.getSecondScore())) {
+                                        specialFrame.setSecondScore(score);
+                                    } else if (Objects.isNull(specialFrame.getThirdValue())) {
                                         specialFrame.setThirdValue(score);
                                     }
                                 } else {
