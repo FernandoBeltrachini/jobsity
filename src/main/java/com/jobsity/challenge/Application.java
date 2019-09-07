@@ -18,7 +18,7 @@ public class Application {
             File file = fileService.readFile(args[0]);
             BowlingScoreBoardService bowlingScoreBoardService = new BowlingScoreBoardService();
             fileService.processFile(file, bowlingScoreBoardService);
-            bowlingScoreBoardService.getBoard();
+            bowlingScoreBoardService.printBoard();
         }
 
     }

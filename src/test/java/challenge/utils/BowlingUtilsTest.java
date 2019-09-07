@@ -82,12 +82,14 @@ public class BowlingUtilsTest {
         Frame frame3 = new Frame(10);
         Frame frame4 = new Frame(5);
         frame4.setSecondScore(5);
-        Frame frame5 = new Frame(5);
-        Frame frame6 = new Frame(5);
-        Frame frame7 = new Frame(5);
-        Frame frame8 = new Frame(5);
-        Frame frame9 = new Frame(5);
-        Frame specialFrame = new SpecialFrame(5);
+        Frame frame5 = new Frame(10);
+        Frame frame6 = new Frame(10);
+        Frame frame7 = new Frame(10);
+        Frame frame8 = new Frame(10);
+        Frame frame9 = new Frame(10);
+        SpecialFrame specialFrame = new SpecialFrame(5);
+        specialFrame.setSecondScore(5);
+        specialFrame.setThirdValue(3);
 
         List<Frame> frames = new ArrayList<>();
         frames.add(frame1);
