@@ -8,6 +8,6 @@ public interface ScoreBoard {
     /**
      * Method that prints a board.
      */
-    void getBoard();
+    void printBoard();
 
 }

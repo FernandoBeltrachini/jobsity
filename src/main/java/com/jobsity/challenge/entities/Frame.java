@@ -40,7 +40,7 @@ public class Frame {
 
     @Override
     public String toString() {
-        return isStrike() ? parseLine(Collections.singletonList(STRIKE_FORMATED_VALUE), TAB_CHARACTER_DELIMITER) :
+        return isStrike() ? parseLine(Collections.singletonList(STRIKE_FORMATED_VALUE), TAB_CHARACTER_DELIMITER.concat(TAB_CHARACTER_DELIMITER)) :
                 isSpare() ? LineUtils.parseLine(Arrays.asList(String.valueOf(firstScore), SPARE_FORMATED_VALUE), TAB_CHARACTER_DELIMITER) :
                         LineUtils.parseLine(Arrays.asList(String.valueOf(firstScore), String.valueOf(secondScore)), TAB_CHARACTER_DELIMITER);
 
