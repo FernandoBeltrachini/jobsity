@@ -24,7 +24,7 @@ public class BowlingScoreBoardServiceTest {
     private static final String SCORE = "3";
     private static final String PLAYER_STRIKE_LINE = PLAYER_NAME.concat(Constants.TAB_CHARACTER_DELIMITER).concat(String.valueOf(Frame.STRIKE_VALUE));
     private static final String PLAYERS_FIELD = "players";
-    public static final String NOT_A_NUMBER = "not a number";
+    private static final String NOT_A_NUMBER = "not a number";
     private Map<String, List<Frame>> players = new HashMap<>();
 
     private BowlingScoreBoardService bowlingScoreBoardService = new BowlingScoreBoardService();
@@ -83,17 +83,10 @@ public class BowlingScoreBoardServiceTest {
 
     }
 
-    @Test
-    public void testPrintBoardShouldRunOk() {
-        processTenStrikes();
-
-        bowlingScoreBoardService.printBoard();
-
-        assertTrue(players.isEmpty());
-    }
-
-
-    private void processTenStrikes(){
+    /**
+     * Private method to process 10 strkes for a player.
+     */
+    private void processTenStrikes() {
         bowlingScoreBoardService.processLine(PLAYER_STRIKE_LINE);
         bowlingScoreBoardService.processLine(PLAYER_STRIKE_LINE);
         bowlingScoreBoardService.processLine(PLAYER_STRIKE_LINE);
