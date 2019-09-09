@@ -26,17 +26,19 @@ public class FileServiceImpl implements FileService {
     @Override
     public void processFile(File file, LineProcessor lineProcessor) {
         BufferedReader bf = null;
-        try {
-            bf = new BufferedReader(new FileReader(file));
-            bf.lines().forEachOrdered(lineProcessor::processLine);
-        } catch (IOException e) {
-            System.out.println("Couldnt close BufferedReader");
-        } finally {
-            if (Objects.nonNull(bf)) {
-                try {
-                    bf.close();
-                } catch (IOException e) {
-                    System.out.println("Couldnt close BufferedReader");
+        if (Objects.nonNull(file) && Objects.nonNull(lineProcessor)) {
+            try {
+                bf = new BufferedReader(new FileReader(file));
+                bf.lines().forEachOrdered(lineProcessor::processLine);
+            } catch (IOException e) {
+                System.out.println("Couldnt read file");
+            } finally {
+                if (Objects.nonNull(bf)) {
+                    try {
+                        bf.close();
+                    } catch (IOException e) {
+                        System.out.println("Couldnt close BufferedReader");
+                    }
                 }
             }
         }

@@ -38,8 +38,13 @@ public class BowlingScoreBoardService implements ScoreBoard, LineProcessor {
         players.forEach((player, frames) -> {
             BowlingUtils.calculateBowlingScores(frames);
             System.out.println(player);
-            LineUtils.printList(PINFALLS_OUTPUT, frames.stream().map(frame -> LineUtils.parseLine(Collections.singletonList(frame.toString()), TAB_CHARACTER_DELIMITER)).collect(Collectors.toList()), TAB_CHARACTER_DELIMITER);
-            LineUtils.printList(SCORE_OUTPUT, frames.stream().map(f -> LineUtils.parseLine(Collections.singletonList(f.getTotalScore().toString()), TAB_CHARACTER_DELIMITER)).collect(Collectors.toList()), printDelimitor);
+            LineUtils.printList(PINFALLS_OUTPUT, frames.stream()
+                    .map(Frame::toString)
+                    .collect(Collectors.toList()), TAB_CHARACTER_DELIMITER);
+            LineUtils.printList(SCORE_OUTPUT, frames.stream()
+                    .map(Frame::getTotalScore)
+                    .map(Object::toString)
+                    .collect(Collectors.toList()), printDelimitor);
         });
     }
 

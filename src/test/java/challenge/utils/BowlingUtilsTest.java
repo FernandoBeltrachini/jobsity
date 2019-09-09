@@ -20,9 +20,9 @@ import static org.junit.Assert.assertNull;
 public class BowlingUtilsTest {
 
 
-    public static final String INTEGER_VALUE = "2";
-    public static final String WORDS_VALUE = "words";
-    public static final String HIGH_NUMBER = "11";
+    private static final String INTEGER_VALUE = "2";
+    private static final String WORDS_VALUE = "words";
+    private static final String HIGH_NUMBER = "11";
 
     @Test
     public void testGetBowlingScoreWithNullValueShouldRunOk() throws BowlingException {
