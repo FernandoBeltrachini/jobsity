@@ -19,7 +19,7 @@ At the root directory there is a file named 'jobsity-bowling-moves.txt' that you
 You can try this application by executing the following line with the path of the file that you want to process.
 
 ```
-java -cp target/challenge-1.0.0-SNAPSHOT.jar com.jobsity.challenge.Application jobsity-bowling-moves.txt
+java -cp target/challenge-1.0.1-SNAPSHOT.jar com.jobsity.challenge.Application jobsity-bowling-moves.txt
 ```
 
 ## Releases
