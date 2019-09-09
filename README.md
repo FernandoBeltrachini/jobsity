@@ -15,11 +15,24 @@ You need to have maven and java 8 installed.
 mvn clean install
 
 At the root directory there is a file named 'jobsity-bowling-moves.txt' that you can use as an example.
+
 You can try this application by executing the following line with the path of the file that you want to process.
 
 ```
 java -cp target/challenge-1.0.0-SNAPSHOT.jar com.jobsity.challenge.Application jobsity-bowling-moves.txt
 ```
+
+## Releases
+
+- 1.0.0: 
+
+        - Initial release.
+
+- 1.0.1:
+
+        - Bug fixing: Fixing missing tab when a frame was a strike.
+        
+        - Adding missing unit test.
 
 ## Authors
 
